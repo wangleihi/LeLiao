@@ -3,9 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/homeViewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/textView"
+        android:layout_height="match_parent">
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/tabStrip"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="top"
         />
+    </android.support.v4.view.ViewPager>
+
 </LinearLayout>
