@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.PagerTabStrip;
@@ -18,7 +19,7 @@ import java.lang.CharSequence;
 
 public class HomeFragment extends Fragment {
 
-    private PagerTabStrip tabStrip;
+    private TabLayout tabLayout;
 
     @Nullable
     @Override
@@ -44,10 +45,10 @@ public class HomeFragment extends Fragment {
         titles.add("抢聊");
         titles.add("动态");
 
-        tabStrip = view.findViewById(R.id.tabStrip);
+        tabLayout = view.findViewById(R.id.tabLayout);
 //        tabStrip.setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
-        tabStrip.setTabIndicatorColor(getResources().getColor(android.R.color.holo_purple));
-        tabStrip.setTextColor(Color.BLACK);
+//        tabStrip.setTabIndicatorColor(getResources().getColor(android.R.color.holo_purple));
+//        tabStrip.setTextColor(Color.BLACK);
 
         PagerAdapter pagerAdapter = new PagerAdapter() {
 
@@ -83,6 +84,7 @@ public class HomeFragment extends Fragment {
         };
 
         homeViewPage.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(homeViewPage);//此方法就是让tablayout和ViewPager联动
 
         return view;
 

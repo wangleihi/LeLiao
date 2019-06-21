@@ -3,19 +3,21 @@ package com.example.leliao;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import android.util.Log;
 import java.net.URLEncoder;
 
 public class PostUtils {
-    public static String LoginByPost (String url) {
+    // post请求
+    public static String postRequest (String url, String body) {
         String msg = "";
 
         try {
             HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
             // 设置请求方式
-            con.setRequestMethod("GET");
+            con.setRequestMethod("POST");
 //            con.setRequestProperty("User-Agent", "Mozilla/5.0 (Linux; U; Android 2.3.3; zh-cn; sdk Build/GRI34) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 MicroMessenger/6.0.0.57_r870003.501 NetType/internet");
 //            con.setReadTimeout(5000);
             con.setConnectTimeout(5000);
@@ -45,6 +47,11 @@ public class PostUtils {
             con.setRequestProperty("Content-type",
                     "application/x-www-form-urlencoded");
             con.connect();
+
+            PrintWriter writer=new PrintWriter(con.getOutputStream());
+            writer.write(body);
+            writer.flush();
+            writer.close();
 
             int code = con.getResponseCode();
 
